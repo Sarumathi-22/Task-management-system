@@ -11,7 +11,7 @@ tasks = []
 
 # LOGIN
 
-print(" TASK MANAGEMENT SYSTEM ")
+print("===== TASK MANAGEMENT SYSTEM =====")
 
 username = input("Enter Username: ")
 password = input("Enter Password: ")
