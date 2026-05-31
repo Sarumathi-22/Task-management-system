@@ -1,36 +1,28 @@
-# =========================================
-# TASK MANAGEMENT SYSTEM
-# =========================================
 
-# ---------- LOGIN DETAILS ----------
+
+# LOGIN DETAILS 
 
 saved_username = "admin"
 saved_password = "1234"
 
-# ---------- TASK LIST ----------
+#  TASK LIST 
 
 tasks = []
 
-# =========================================
 # LOGIN
-# =========================================
 
-print("===== TASK MANAGEMENT SYSTEM =====")
+print(" TASK MANAGEMENT SYSTEM ")
 
 username = input("Enter Username: ")
 password = input("Enter Password: ")
 
-# =========================================
 # LOGIN CHECK
-# =========================================
 
 if username == saved_username and password == saved_password:
 
     print("\nLogin Successful!")
 
-    # =====================================
     # MAIN MENU LOOP
-    # =====================================
 
     while True:
 
@@ -43,9 +35,7 @@ if username == saved_username and password == saved_password:
 
         choice = input("\nEnter Your Choice: ")
 
-        # =====================================
         # CREATE TASK
-        # =====================================
 
         if choice == "1":
 
@@ -66,9 +56,7 @@ if username == saved_username and password == saved_password:
 
             print("Task Added Successfully!")
 
-        # =====================================
         # VIEW TASKS
-        # =====================================
 
         elif choice == "2":
 
@@ -86,9 +74,7 @@ if username == saved_username and password == saved_password:
                     print("Task Name :", tasks[i]["name"])
                     print("Task Status :", tasks[i]["status"])
 
-        # =====================================
         # UPDATE TASK STATUS
-        # =====================================
 
         elif choice == "3":
 
@@ -157,9 +143,7 @@ if username == saved_username and password == saved_password:
 
                     print("Task Not Found")
 
-        # =====================================
         # DELETE TASK
-        # =====================================
 
         elif choice == "4":
 
@@ -202,26 +186,20 @@ if username == saved_username and password == saved_password:
 
                     print("Task Not Found")
 
-        # =====================================
         # LOGOUT
-        # =====================================
 
         elif choice == "5":
 
             print("\nLogout Successful")
             break
 
-        # =====================================
         # INVALID CHOICE
-        # =====================================
 
         else:
 
             print("Invalid Choice")
 
-# =========================================
 # INVALID LOGIN
-# =========================================
 
 else:
 
