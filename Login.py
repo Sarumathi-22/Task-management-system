@@ -1,26 +1,34 @@
-# LOGIN DETAILS 
+# TASK MANAGEMENT SYSTEM
 
-saved_username = "Saru"
-saved_password = "1234"
-
-#  TASK LIST 
+users = {}
 
 tasks = []
 
+# CREATE ACCOUNT
+
+print("====================================")
+print("      TASK MANAGEMENT SYSTEM")
+print("====================================")
+
+print("\n===== CREATE ACCOUNT =====")
+
+new_username = input("Create Username: ")
+new_password = input("Create Password: ")
+
+users[new_username] = new_password
+
+print("\nAccount Created Successfully!")
+
 # LOGIN
 
-print("===== TASK MANAGEMENT SYSTEM =====")
+print("\n===== LOGIN =====")
 
 username = input("Enter Username: ")
 password = input("Enter Password: ")
 
-# LOGIN CHECK
-
-if username == saved_username and password == saved_password:
+if username in users and users[username] == password:
 
     print("\nLogin Successful!")
-
-    # MAIN MENU LOOP
 
     while True:
 
@@ -31,52 +39,41 @@ if username == saved_username and password == saved_password:
         print("4. Delete Task")
         print("5. Logout")
 
-        choice = input("\nEnter Your Choice: ")
+        choice = input("Enter Your Choice: ")
 
         # CREATE TASK
-
         if choice == "1":
 
-            print("\n===== CREATE TASK =====")
-
             task_name = input("Enter Task Name: ")
-
-            # Default Status
 
             task = {
                 "name": task_name,
                 "status": "Pending"
             }
 
-            # Add Task
-
             tasks.append(task)
 
             print("Task Added Successfully!")
 
         # VIEW TASKS
-
         elif choice == "2":
 
             print("\n===== TASK LIST =====")
 
             if len(tasks) == 0:
-
                 print("No Tasks Available")
 
             else:
-
                 for i in range(len(tasks)):
-
-                    print("\nTask", i + 1)
-                    print("Task Name :", tasks[i]["name"])
-                    print("Task Status :", tasks[i]["status"])
+                    print(
+                        str(i + 1) + ".",
+                        tasks[i]["name"],
+                        "-",
+                        tasks[i]["status"]
+                    )
 
         # UPDATE TASK STATUS
-
         elif choice == "3":
-
-            print("\n===== UPDATE TASK STATUS =====")
 
             if len(tasks) == 0:
 
@@ -84,68 +81,53 @@ if username == saved_username and password == saved_password:
 
             else:
 
-                # Display Available Tasks
+                print("\n===== TASK LIST =====")
 
-                print("\nAvailable Tasks:")
+                for i in range(len(tasks)):
+                    print(
+                        str(i + 1) + ".",
+                        tasks[i]["name"],
+                        "-",
+                        tasks[i]["status"]
+                    )
 
-                for task in tasks:
+                try:
 
-                    print("-", task["name"], ":", task["status"])
+                    task_no = int(input("Enter Task Number: "))
 
-                # Get Task Name
+                    if 1 <= task_no <= len(tasks):
 
-                task_name = input("\nEnter Task Name To Update: ")
-
-                found = False
-
-                # Search Task
-
-                for task in tasks:
-
-                    if task["name"].lower() == task_name.lower():
-
-                        found = True
-
-                        print("\nSelect New Status")
-                        print("1. Pending")
+                        print("\n1. Pending")
                         print("2. In Progress")
                         print("3. Completed")
 
-                        status_choice = input("Enter Status Choice: ")
-
-                        # Update Status
+                        status_choice = input(
+                            "Enter New Status Choice: "
+                        )
 
                         if status_choice == "1":
-
-                            task["status"] = "Pending"
+                            tasks[task_no - 1]["status"] = "Pending"
 
                         elif status_choice == "2":
-
-                            task["status"] = "In Progress"
+                            tasks[task_no - 1]["status"] = "In Progress"
 
                         elif status_choice == "3":
-
-                            task["status"] = "Completed"
+                            tasks[task_no - 1]["status"] = "Completed"
 
                         else:
-
                             print("Invalid Status Choice")
-                            break
+                            continue
 
                         print("Task Status Updated Successfully!")
-                        break
 
-                # Task Not Found
+                    else:
+                        print("Invalid Task Number")
 
-                if found == False:
-
-                    print("Task Not Found")
+                except ValueError:
+                    print("Please Enter A Valid Number")
 
         # DELETE TASK
-
         elif choice == "4":
-
-            print("\n===== DELETE TASK =====")
 
             if len(tasks) == 0:
 
@@ -153,52 +135,43 @@ if username == saved_username and password == saved_password:
 
             else:
 
-                # Display Tasks
+                print("\n===== TASK LIST =====")
 
-                print("\nAvailable Tasks:")
+                for i in range(len(tasks)):
+                    print(str(i + 1) + ".", tasks[i]["name"])
 
-                for task in tasks:
+                try:
 
-                    print("-", task["name"])
+                    task_no = int(
+                        input("Enter Task Number To Delete: ")
+                    )
 
-                # Get Task Name
+                    if 1 <= task_no <= len(tasks):
 
-                task_name = input("\nEnter Task Name To Delete: ")
+                        deleted_task = tasks.pop(task_no - 1)
 
-                found = False
+                        print(
+                            deleted_task["name"],
+                            "Deleted Successfully!"
+                        )
 
-                # Search and Delete
+                    else:
+                        print("Invalid Task Number")
 
-                for task in tasks:
-
-                    if task["name"].lower() == task_name.lower():
-
-                        tasks.remove(task)
-
-                        found = True
-
-                        print("Task Deleted Successfully!")
-                        break
-
-                if found == False:
-
-                    print("Task Not Found")
+                except ValueError:
+                    print("Please Enter A Valid Number")
 
         # LOGOUT
-
         elif choice == "5":
 
-            print("\nLogout Successful")
+            print("\nLogout Successful!")
             break
 
         # INVALID CHOICE
-
         else:
 
-            print("Invalid Choice")
-
-# INVALID LOGIN
+            print("Invalid Choice! Please Try Again.")
 
 else:
 
-    print("Invalid Username or Password")
+    print("\nInvalid Username Or Password")
