@@ -1,8 +1,6 @@
-
-
 # LOGIN DETAILS 
 
-saved_username = "admin"
+saved_username = "Saru"
 saved_password = "1234"
 
 #  TASK LIST 
